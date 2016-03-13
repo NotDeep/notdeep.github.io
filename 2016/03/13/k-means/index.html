@@ -57,34 +57,22 @@
 
 
 
-<meta name="description" content="绪论嘛。这两天重新挖坑开始从头好好学习下机器学习的知识
+<meta name="description" content="Introduction嘛。这两天重新挖坑开始从头好好学习下机器学习的知识
 其实在专业课《人工智能基础》和《数据挖掘》中就把K-means讲过
-无奈于当时自己经常熬夜打比赛,课上都是浑浑噩噩水过去的
-现在重新挖坑,跟着《视觉机器学习20讲》好好复习一遍算法的基础知识
-每一块的理论加深,就查阅一下相关论文以及《统计学习方法》中的推导
-头天看看了书,第二天boss分配的新任务就是与基于K-means的字典学习相关的
-雾雾">
+无奈于当时自己经常熬夜打比赛,课上都是浑浑噩噩水过去的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="k-means">
 <meta property="og:url" content="http://notdeep.github.io/2016/03/13/k-means/index.html">
 <meta property="og:site_name" content="NotDeep">
-<meta property="og:description" content="绪论嘛。这两天重新挖坑开始从头好好学习下机器学习的知识
+<meta property="og:description" content="Introduction嘛。这两天重新挖坑开始从头好好学习下机器学习的知识
 其实在专业课《人工智能基础》和《数据挖掘》中就把K-means讲过
-无奈于当时自己经常熬夜打比赛,课上都是浑浑噩噩水过去的
-现在重新挖坑,跟着《视觉机器学习20讲》好好复习一遍算法的基础知识
-每一块的理论加深,就查阅一下相关论文以及《统计学习方法》中的推导
-头天看看了书,第二天boss分配的新任务就是与基于K-means的字典学习相关的
-雾雾">
-<meta property="og:updated_time" content="2016-03-13T16:56:29.000Z">
+无奈于当时自己经常熬夜打比赛,课上都是浑浑噩噩水过去的">
+<meta property="og:updated_time" content="2016-03-13T17:07:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="k-means">
-<meta name="twitter:description" content="绪论嘛。这两天重新挖坑开始从头好好学习下机器学习的知识
+<meta name="twitter:description" content="Introduction嘛。这两天重新挖坑开始从头好好学习下机器学习的知识
 其实在专业课《人工智能基础》和《数据挖掘》中就把K-means讲过
-无奈于当时自己经常熬夜打比赛,课上都是浑浑噩噩水过去的
-现在重新挖坑,跟着《视觉机器学习20讲》好好复习一遍算法的基础知识
-每一块的理论加深,就查阅一下相关论文以及《统计学习方法》中的推导
-头天看看了书,第二天boss分配的新任务就是与基于K-means的字典学习相关的
-雾雾">
+无奈于当时自己经常熬夜打比赛,课上都是浑浑噩噩水过去的">
 
 
 
@@ -276,9 +264,10 @@
       
 
       
-        <h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>嘛。这两天重新挖坑开始从头好好学习下机器学习的知识</p>
+        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>嘛。这两天重新挖坑开始从头好好学习下机器学习的知识</p>
 <p>其实在专业课《人工智能基础》和《数据挖掘》中就把K-means讲过</p>
 <p>无奈于当时自己经常熬夜打比赛,课上都是浑浑噩噩水过去的</p>
+<a id="more"></a>
 <p>现在重新挖坑,跟着《视觉机器学习20讲》好好复习一遍算法的基础知识</p>
 <p>每一块的理论加深,就查阅一下相关论文以及《统计学习方法》中的推导</p>
 <p>头天看看了书,第二天boss分配的新任务就是与基于K-means的字典学习相关的</p>
@@ -504,7 +493,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#绪论"><span class="nav-number">1.</span> <span class="nav-text">绪论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">2.</span> <span class="nav-text">What</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">3.</span> <span class="nav-text">How</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般步骤"><span class="nav-number">3.1.</span> <span class="nav-text">一般步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求点群中心的算法"><span class="nav-number">3.2.</span> <span class="nav-text">求点群中心的算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">4.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization"><span class="nav-number">5.</span> <span class="nav-text">Optimization</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">2.</span> <span class="nav-text">What</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">3.</span> <span class="nav-text">How</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般步骤"><span class="nav-number">3.1.</span> <span class="nav-text">一般步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求点群中心的算法"><span class="nav-number">3.2.</span> <span class="nav-text">求点群中心的算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">4.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization"><span class="nav-number">5.</span> <span class="nav-text">Optimization</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
