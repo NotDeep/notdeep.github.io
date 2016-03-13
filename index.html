@@ -214,6 +214,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/03/13/k-means/" itemprop="url">
+                  k-means
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">發表於</span>
+            <time itemprop="dateCreated" datetime="2016-03-13T21:28:49+08:00" content="2016-03-13">
+              2016-03-13
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/13/k-means/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/13/k-means/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>嘛。这两天重新挖坑开始从头好好学习下机器学习的知识</p>
+<p>其实在专业课《人工智能基础》和《数据挖掘》中就把K-means讲过</p>
+<p>无奈于当时自己经常熬夜打比赛,课上都是浑浑噩噩水过去的</p>
+<p>现在重新挖坑,跟着《视觉机器学习20讲》好好复习一遍算法的基础知识</p>
+<p>每一块的理论加深,就查阅一下相关论文以及《统计学习方法》中的推导</p>
+<p>头天看看了书,第二天boss分配的新任务就是与基于K-means的字典学习相关的</p>
+<p><del>雾雾雾雾</del></p>
+<p>以后的机器学习向博文都想以What,How,Application,Optimization的思路</p>
+<h2 id="What"><a href="#What" class="headerlink" title="What"></a>What</h2><p><a href="https://en.wikipedia.org/wiki/K-means_clustering" target="_blank" rel="external">K-means</a>是基于数据划分的一种无监督聚类算法</p>
+<p>聚类算法可以理解为无监督的分类方法</p>
+<blockquote>
+<p>无监督的分类方法就是样本集预先不知道所属类别或者标签,需要根据样本之间的距离or相似程度进行自动的分类<br>基于的办法有基于划分的方法、基于联通性的方法、基于概率分布模型的方法等。<br>K-means属于基于划分的聚类方法</p>
+</blockquote>
+<p>其实也蛮好理解,我们可以想想一下放在平面坐标系中的一些点,如何把这些点划分到各种类别。我们可以人为的制定一定的标准,比如满足某个限制就属于某个类别,就好比我们考90分叫优秀,70~90叫良,60~70叫及格一样。而K-means是一种自动分类的方法,他是基于数据间的“距离”和相似度来进行划分的,这里的距离在不同的场景或许可以代表具体的含义。</p>
+<h2 id="How"><a href="#How" class="headerlink" title="How"></a>How</h2><p>假设样本集合$D = { \{x_j\}_{j=1}^n }$,${x_j\in{R^d}}$,K-means聚类算法想达到的就是将数据集划分为$k(k&lt;n)$类:$S={\{S_1,S_2,…,S_k\}}$,使划分后的k个子集和满足类内的误差平方和最小:<br>$$l_{k-means}(S) = arg_{S={ \{S_i\} }^k_{i=1}} min\sum_{i=1}^{k}\sum_{x\in S_i} {|x-c_{i}|^2_2}$$</p>
+<p>其中:<br>$$c_i=\frac{1}{ |S_i| }\sum_{x\in S_i}x$$</p>
+<p><del>Latax初学者,打公式打得好辛苦</del></p>
+<p>求解目标函数$l_{k-means}$是一个NP-hard(惊!)问题,无法保证得到一个绝对的全局最优解(why,复杂度爆炸啦)。在常用和经典的求解方法中都是采取一种迭代优化的策略。</p>
+<h3 id="一般步骤"><a href="#一般步骤" class="headerlink" title="一般步骤"></a>一般步骤</h3><ol>
+<li>随机选取K个种子点,K个簇(如何选取K是玄学,后面会讨论一下下)</li>
+<li>然后对所有数组求到这个K个种子点的距离,假如$X_i$离种子点$S_i$最近,那么$X_i$就属于这个$S_i$这个簇</li>
+<li>根据步骤2的分配结果,更新聚类中心:<br>$${c_i^{(t+1)} = \frac{1}{ |S_i| }\sum_{x_j \in {S_i^{t}}}} x_j$$<br>迭代第t+1轮的各个簇等于第t轮的各个簇的点求个平均</li>
+<li>若迭代次数完成或者前后两次迭代的差小于设定的阈值$\epsilon$,即<br>$${|c_i^{(t+1)}-c_i^{(t)}|^2_2&lt;\epsilon}$$</li>
+</ol>
+<p>则算法结束,否则重复执行步骤2、3</p>
+<h3 id="求点群中心的算法"><a href="#求点群中心的算法" class="headerlink" title="求点群中心的算法"></a>求点群中心的算法</h3><p>上面就很简单的算各个点的X\Y坐标的平均值,另外还有三个求中心点的公式:</p>
+<ol>
+<li>Minkowski Distance公式——λ可以随意取值，可以是负数，也可以是正数，或是无穷大<br>$$d_{ij} = {\sqrt[\lambda]{\sum_{k=1}^n {|x_{ik}-x_{kj}|^{\lambda}} }}$$</li>
+<li>Euclidean Distance公式——也就是第一个公式λ=2的情况<br>$$d_{ij} = {\sqrt{\sum_{k=1}^n {|x_{ik}-x_{kj}|^{2}} }}$$</li>
+<li>CityBlock Distance公式——也就是第一个公式λ=1的情况<br>$$d_{ij} = \sum_{k=1}^{n}|x_{ik}-x_{kj}|$$</li>
+</ol>
+<p>这里的$\lambda$的取值就就是反应一种怎么趋近于这个簇的中心的</p>
+<h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>K-means是比较简单的一个算法。<br>但是我们可以把问题考虑到更复杂的应用场景,比如对于人群的分类,我们就可以考虑人的多个属性了,年龄、性别、爱好、学历…而具体的问题目测也需要不一样的距离计算函数。<br>我们只要把现实中的一些问题抽象为若干维的描述属性,我们就可以思考是否能够能用K-means做个分类。<br>现实中我们借此来分析商品的相似度,归类商品就是一个很好的运用</p>
+<h2 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h2><p><del>待补</del></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/03/12/essay0312/" itemprop="url">
                   See You Again
                 </a>
@@ -432,7 +561,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">文章</span>
             </a>
           </div>
