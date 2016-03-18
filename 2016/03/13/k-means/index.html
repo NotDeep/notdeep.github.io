@@ -65,7 +65,7 @@
 <meta property="og:site_name" content="NotDeep">
 <meta property="og:description" content="Introduction嘛。这两天重新挖坑开始从头好好学习下机器学习的知识
 其实在专业课《人工智能基础》和《数据挖掘》中就把K-means讲过">
-<meta property="og:updated_time" content="2016-03-13T17:17:19.000Z">
+<meta property="og:updated_time" content="2016-03-18T08:48:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="K-means算法浅学">
 <meta name="twitter:description" content="Introduction嘛。这两天重新挖坑开始从头好好学习下机器学习的知识
@@ -295,7 +295,18 @@
 </ol>
 <p>这里的$\lambda$的取值就就是反应一种怎么趋近于这个簇的中心的</p>
 <h2 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h2><p>K-means是比较简单的一个算法。<br>但是我们可以把问题考虑到更复杂的应用场景,比如对于人群的分类,我们就可以考虑人的多个属性了,年龄、性别、爱好、学历…而具体的问题目测也需要不一样的距离计算函数。<br>我们只要把现实中的一些问题抽象为若干维的描述属性,我们就可以思考是否能够能用K-means做个分类。<br>现实中我们借此来分析商品的相似度,归类商品就是一个很好的运用</p>
-<h2 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h2><p><del>待补</del></p>
+<h2 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h2><p>K-means算法过程虽然简单,而且可调参数也少,就是一个初始的K。<br>但是正因为这样,K-means对聚类中心的初始化比较敏感,不同的初始值带来不同的聚类结果,K-means算法对目标函数$l_{k-means}(S)$求取近似局部最优解,不能保证得到全局最优解$l^*_{k-means}(S)$,所以初始化是门<del>玄学</del></p>
+<p>K-means算法的优化思路有几个方面:</p>
+<ol>
+<li>K的合理选取 </li>
+<li>K个初始中心点的合理选取 </li>
+<li>二分K-means聚类</li>
+</ol>
+<h3 id="K的合理选取"><a href="#K的合理选取" class="headerlink" title="K的合理选取"></a>K的合理选取</h3><p>对于一个数据集,我们不知道分为多少个类合适的时候,只能调参数K来尝试了。但是我们可以思考一下每次选取的K个点也是random的,那么调参数也变得不太可控了。<br>所以有一种自适应的思路,经典的方法是ISODATA算法,该算法与K-means在基本原则上一致,但是在中间加入了启发式合并与分裂的机制。<br>在每一次迭代中,ISODATA算法首先在固定类别个数的情况下聚类,然后根据样本之间的距离阈值来进行合并操作,并根据每一组类别$S_i$中的样本协方差矩阵来判断是否分开。<br>因为这样有启发式合并和分开,所以要做到算法收敛可能需要的时间会比朴素的更多。</p>
+<h3 id="K个初始中心点的合理选取"><a href="#K个初始中心点的合理选取" class="headerlink" title="K个初始中心点的合理选取"></a>K个初始中心点的合理选取</h3><p>一个简单有效的方法是叫K-mean++算法,保证初始化后的K-means可以得到O($logk$)的近似解,擦。。怎么证明的。<br>算法的基本步骤:<br>首先随机初始化一个聚类中心$C = \{c_1\}$; 然后通过迭代计算最大概率值:<br>$$x^* = arg_x max {\frac{d(x,C)}{\sum_{j = 1,2…,n}d(x_j,C)}}$$</p>
+<p>加入下一个聚类中心:<br>$$C ← C \cup \{x^*\}$$<br>直到选择k个中心</p>
+<p>K-means++算法复杂度为$O(knd)$,就相当于单次迭代K-means算法,没有加大算法的复杂度。挺好的。。嘿嘿嘿</p>
+<h3 id="二分K-means聚类"><a href="#二分K-means聚类" class="headerlink" title="二分K-means聚类"></a>二分K-means聚类</h3><p>这个思路也挺好玩的,咱们先把整个样本视为一个簇,然后二分这个簇,选择其中一个簇继续二分。选择的思路就是让SSE(Sum of Squared Error, SSE)尽可能的小。本质上SSE就是在计算一个距离和。</p>
 
       
     </div>
@@ -494,7 +505,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">2.</span> <span class="nav-text">What</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">3.</span> <span class="nav-text">How</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般步骤"><span class="nav-number">3.1.</span> <span class="nav-text">一般步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求点群中心的算法"><span class="nav-number">3.2.</span> <span class="nav-text">求点群中心的算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">4.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization"><span class="nav-number">5.</span> <span class="nav-text">Optimization</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What"><span class="nav-number">2.</span> <span class="nav-text">What</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How"><span class="nav-number">3.</span> <span class="nav-text">How</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般步骤"><span class="nav-number">3.1.</span> <span class="nav-text">一般步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#求点群中心的算法"><span class="nav-number">3.2.</span> <span class="nav-text">求点群中心的算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application"><span class="nav-number">4.</span> <span class="nav-text">Application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimization"><span class="nav-number">5.</span> <span class="nav-text">Optimization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#K的合理选取"><span class="nav-number">5.1.</span> <span class="nav-text">K的合理选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#K个初始中心点的合理选取"><span class="nav-number">5.2.</span> <span class="nav-text">K个初始中心点的合理选取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二分K-means聚类"><span class="nav-number">5.3.</span> <span class="nav-text">二分K-means聚类</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
