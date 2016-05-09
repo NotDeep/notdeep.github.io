@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="随笔," />
+  <meta name="keywords" content="Machine Learning," />
 
 
 
@@ -57,19 +57,23 @@
 
 
 
-<meta name="description" content="与朋友吃饭，一下子聊到以前专业里另外一个班上的一个人的近况。为啥是以前，因为他已经退学了，在自己不能毕业的情况下退学了。
-那个他大概是所谓大学里“主流价值观”里最背道而驰的那种人，大一GPA1.0+，上课出现的次数用手指头都可以数过来，整天酗酒，过得浑浑噩噩，俨然“行尸走肉”。">
+<meta name="description" content="之前有对K-means聚类算法有过介绍,现补个例子。证明我学过">
 <meta property="og:type" content="article">
-<meta property="og:title" content="“暴力”">
-<meta property="og:url" content="http://notdeep.github.io/2016/04/11/essay0410/index.html">
+<meta property="og:title" content="K-means与图像压缩">
+<meta property="og:url" content="http://notdeep.github.io/2016/05/10/K-means-example/index.html">
 <meta property="og:site_name" content="NotDeep">
-<meta property="og:description" content="与朋友吃饭，一下子聊到以前专业里另外一个班上的一个人的近况。为啥是以前，因为他已经退学了，在自己不能毕业的情况下退学了。
-那个他大概是所谓大学里“主流价值观”里最背道而驰的那种人，大一GPA1.0+，上课出现的次数用手指头都可以数过来，整天酗酒，过得浑浑噩噩，俨然“行尸走肉”。">
-<meta property="og:updated_time" content="2016-04-21T09:11:44.000Z">
+<meta property="og:description" content="之前有对K-means聚类算法有过介绍,现补个例子。证明我学过">
+<meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water.jpg">
+<meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_128.jpg">
+<meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_64.jpg">
+<meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_32.jpg">
+<meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_16.jpg">
+<meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_8.jpg">
+<meta property="og:updated_time" content="2016-05-09T18:12:22.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="“暴力”">
-<meta name="twitter:description" content="与朋友吃饭，一下子聊到以前专业里另外一个班上的一个人的近况。为啥是以前，因为他已经退学了，在自己不能毕业的情况下退学了。
-那个他大概是所谓大学里“主流价值观”里最背道而驰的那种人，大一GPA1.0+，上课出现的次数用手指头都可以数过来，整天酗酒，过得浑浑噩噩，俨然“行尸走肉”。">
+<meta name="twitter:title" content="K-means与图像压缩">
+<meta name="twitter:description" content="之前有对K-means聚类算法有过介绍,现补个例子。证明我学过">
+<meta name="twitter:image" content="http://o6x8fl19z.bkt.clouddn.com/water.jpg">
 
 
 
@@ -87,7 +91,7 @@
   };
 </script>
 
-  <title> “暴力” | NotDeep </title>
+  <title> K-means与图像压缩 | NotDeep </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-hk">
@@ -215,7 +219,7 @@
             
             
               
-                “暴力”
+                K-means与图像压缩
               
             
           </h1>
@@ -227,8 +231,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">發表於</span>
-            <time itemprop="dateCreated" datetime="2016-04-11T00:03:55+08:00" content="2016-04-11">
-              2016-04-11
+            <time itemprop="dateCreated" datetime="2016-05-10T00:53:44+08:00" content="2016-05-10">
+              2016-05-10
             </time>
           </span>
 
@@ -238,8 +242,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/11/essay0410/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/11/essay0410/" itemprop="commentsCount"></span>
+                <a href="/2016/05/10/K-means-example/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/10/K-means-example/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -261,19 +265,29 @@
       
 
       
-        <p>与朋友吃饭，一下子聊到以前专业里另外一个班上的一个人的近况。为啥是以前，因为他已经退学了，在自己不能毕业的情况下退学了。</p>
-<p>那个他大概是所谓大学里“主流价值观”里最背道而驰的那种人，大一GPA1.0+，上课出现的次数用手指头都可以数过来，整天酗酒，过得浑浑噩噩，俨然“行尸走肉”。</p>
-<a id="more"></a>
-<p>于是受到班上拥有主流价值观的同学的排挤，觉得拖了班级的后腿。在专业群里公开声讨他的一系列不具有“集体荣誉感”的行为。甚至上升到个人价值观的层面，这很可怕！</p>
-<p>不知道何时，我们居然拥有了可以否定别人价值观的权利了，仿佛一群人觉得那一个人是异端，因为他不拥有跟自己类似的“主流积极”的价值观。</p>
-<p>向来喜欢惹闲事的我，跳出来不大不小的帮他说了两句话。无心之为，遵从内心的方式。</p>
-<p>那晚于是我就变成了他骚扰的对象，幸好那晚我也要打比赛会熬夜，他把我当做还能理解他的那种人。一直单方面倾诉很多他自己的看法，包括学习无用论、人生无可追求论、也包括蛮多可爱的事情。</p>
-<p>打比赛分心只能以“喔”、“嗯”或者不痛不痒的评论一两句…他高中的生活经常都睡在学校附近的广场上,只是因为他喝醉了。谈及到他对于父母只是有送终的责任，也像个“正常人”一样十分拥有人情味的谈论到《数据挖掘》课程那个可爱的老师，也说过自己人生理想就是开一家餐馆而且自己很容易办到，以此比很多人都可以过得更好。</p>
-<p>“刘老师跟我很有缘分吧，我恰好跟她儿子一个名字，从大一她当我班导师的时候一直想把我往比较好的方向引导”</p>
-<p>那晚之后，第二天他向学校提交退学申请,不久之后的《数据挖掘》课上，老师问到他为什么没来时候。他“以前”班上的同学用着一个摒弃的语气说他自己选择退学了，仿佛一切事情与自己无关。</p>
-<p>我后悔过，我那晚没有多分些精力劝劝他…<br>但是还是不劝更好。</p>
-<p>从朋友那里听闻到，他回去结婚、买车、买房了….与现在周围追求生计和出路的氛围完全不一样…</p>
-<p>愿他能过得好,免遭于各种比拳脚伤人更厉害的“暴力”！</p>
+        <p>之前有对K-means聚类算法有过介绍,现补个例子。证明<del>我学过</del><br><a id="more"></a></p>
+<p>##算法引子<br>不久前尝试解决过一个参数压缩的问题。<br>当时的需求是把深度学习网络中的权重参数和偏执参数进行压缩。<br>其中一个思路就是从图像的颜色空间压缩的思路提供的，当时一共有$float$类型的参数$8000k$+,前辈之前的工作经过数值分布统计之后采用将参数放大$100000$然后直接用$int16$存储,这样就保留了小数点后$5$位的精度,使用的时候再除以$100000$还原,这样就直接将$32$位的存储类型转换为$16$位的数据类型,有损压缩率为$50$%经过测试对于模型的影响是微乎其微的,ROC曲线表现也很好。</p>
+<p>我们换种思路理解这种方法,$int16$范围内一共也只有$65535$种数值,而我们用$int16$表示了$8000K$+个参数,可想而知这其中肯定有很多数值重复率很高。</p>
+<p>于是人是贪婪的,我们想进一步用更少的数值个数去表达这些所有参数。于是当时就想是否可以通过聚类的办法将参数用更少的簇来表示,使用的时候有一个索引,我们对应的去绘制出原来的参数表就行了。比如我们只有$256$个簇的话,每个位置的索引我们用一个$8bit$就可以建立索引。</p>
+<p>无奈最后实验过很多个参数这个办法都不是很好,感觉对参数本身的结构损坏很大。目测要深入了解到参数的结构,对功能相似的参数做个局部聚类可能效果会很赞。</p>
+<p>不过基于上面的思路就是一个用聚类算法对图像进行压缩的基本思路了。</p>
+<h2 id="K-means与图像压缩"><a href="#K-means与图像压缩" class="headerlink" title="K-means与图像压缩"></a>K-means与图像压缩</h2><h3 id="压缩算法设计"><a href="#压缩算法设计" class="headerlink" title="压缩算法设计"></a>压缩算法设计</h3><p>我们从一张图片的颜色空间压缩入手:</p>
+<p>假设我们考虑一张$128$X$128$大小的RGB图像,每个像素点显然都有$3$个$8bit$($uint8$类型,$0-255$)分别就是红、绿、蓝的色彩强度。</p>
+<p>只考虑颜色存储部分,这个图像就需要$128$X$128$X$3$X$8bit$ $=49152Byte = 48kb$来保存图像信息</p>
+<p>而一张图片中很多颜色可以重复使用，或者一些相近的颜色用一种颜色来替代掉。比如我们降低到$16$种颜色，每个像素点仅仅需要$log_2(16) = 4 bit$来对颜色做一个索引。就类似一个画图板,我们画图板上面的颜色数减少了,画板就变小了，而我们已经知道一幅图某个位置应该对应画图板上哪种颜色，我们对应进行重建这幅图就好了。</p>
+<p>我们需要在压缩的时候记录：<br>1、压缩$K$颜色空间和$RGB$颜色空间的映射关系：即给出$0-15$代表的$K=16$种颜色，需要索引出对应的$uint8$类型$RGB$值</p>
+<p>2、每个像素点的K颜色空间颜色值</p>
+<p>那么我们可以粗略计算理想压缩比为：<br>$$\frac{49152}{128_128_(log_2(16)/8)+16*3} = 5.9650$$</p>
+<p>实际没有利用图像的空间信息和图片格式的问题,实际的压缩率没有这么高</p>
+<p>$code$直接就用scikit-learn库里面的K-means算法做个颜色空间的聚类压缩就好啦。详情见代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"><span class="keyword">from</span> sklearn.utils <span class="keyword">import</span> shuffle</span><br><span class="line"><span class="keyword">import</span> mahotas <span class="keyword">as</span> mh</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">original_img = np.array(mh.imread(<span class="string">'water.jpg'</span>),dtype = np.uint8)</span><br><span class="line">original_dimensions = tuple(original_img.shape)</span><br><span class="line">width, height, depth = tuple(original_img.shape)</span><br><span class="line">image_flattened = np.reshape(original_img, (width * height, depth))</span><br><span class="line"><span class="keyword">print</span> image_flattened.shape</span><br><span class="line"></span><br><span class="line">image_array_sample = shuffle(image_flattened,random_state=<span class="number">0</span>)[:<span class="number">17</span>]</span><br><span class="line">estimator = KMeans(n_clusters=<span class="number">16</span>, random_state=<span class="number">0</span>)</span><br><span class="line">estimator.fit(image_array_sample)</span><br><span class="line"></span><br><span class="line">cluster_assignments = estimator.predict(image_flattened)</span><br><span class="line"></span><br><span class="line">compressed_palette = estimator.cluster_centers_</span><br><span class="line">compressed_img = np.zeros( (width, height, compressed_palette.shape[<span class="number">1</span>]) , dtype = np.uint8)</span><br><span class="line">label_idx = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(width):</span><br><span class="line">	<span class="keyword">for</span> j <span class="keyword">in</span> range(height):</span><br><span class="line">		compressed_img[i][j] = compressed_palette[cluster_assignments[label_idx]]</span><br><span class="line">		label_idx += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">mh.imsave(<span class="string">'water_16.jpg'</span>,compressed_img)</span><br><span class="line">plt.subplot(<span class="number">122</span>)</span><br><span class="line">plt.title(<span class="string">"Original Image"</span>)</span><br><span class="line">plt.imshow(original_img)</span><br><span class="line">plt.axis(<span class="string">'off'</span>)</span><br><span class="line">plt.subplot(<span class="number">121</span>)</span><br><span class="line">plt.title(<span class="string">'Compressd Image'</span>)</span><br><span class="line">plt.imshow(compressed_img)</span><br><span class="line">plt.axis(<span class="string">'off'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<h3 id="实验效果"><a href="#实验效果" class="headerlink" title="实验效果"></a>实验效果</h3><h4 id="Original-Image"><a href="#Original-Image" class="headerlink" title="$Original$ $Image$"></a>$Original$ $Image$</h4><p>$size = 39,528 byte$<br><img src="http://o6x8fl19z.bkt.clouddn.com/water.jpg" alt="原始图片"></p>
+<h4 id="Compressd-Image-K-128"><a href="#Compressd-Image-K-128" class="headerlink" title="$Compressd$ $Image$ $K = 128$"></a>$Compressd$ $Image$ $K = 128$</h4><p>$size = 28,008 byte$<br><img src="http://o6x8fl19z.bkt.clouddn.com/water_128.jpg" alt="K = 128"></p>
+<h4 id="Compressd-Image-K-64"><a href="#Compressd-Image-K-64" class="headerlink" title="$Compressd$ $Image$ $K = 64$"></a>$Compressd$ $Image$ $K = 64$</h4><p>$size = 28,103 byte$<br><img src="http://o6x8fl19z.bkt.clouddn.com/water_64.jpg" alt="K = 64"></p>
+<h4 id="Compressd-Image-K-32"><a href="#Compressd-Image-K-32" class="headerlink" title="$Compressd$ $Image$ $K = 32$"></a>$Compressd$ $Image$ $K = 32$</h4><p>$size = 26,137 byte$<br><img src="http://o6x8fl19z.bkt.clouddn.com/water_32.jpg" alt="K = 32"></p>
+<h4 id="Compressd-Image-K-16"><a href="#Compressd-Image-K-16" class="headerlink" title="$Compressd$ $Image$ $K = 16$"></a>$Compressd$ $Image$ $K = 16$</h4><p>$size = 25,271 byte$<br><img src="http://o6x8fl19z.bkt.clouddn.com/water_16.jpg" alt="K = 16"></p>
+<h4 id="Compressd-Image-K-8"><a href="#Compressd-Image-K-8" class="headerlink" title="$Compressd$ $Image$ $K = 8$"></a>$Compressd$ $Image$ $K = 8$</h4><p>$size = 23,736 byte$<br><img src="http://o6x8fl19z.bkt.clouddn.com/water_8.jpg" alt="K = 8"></p>
+<h3 id="实验结论"><a href="#实验结论" class="headerlink" title="实验结论"></a>实验结论</h3><p>当从原始图片转化到$K=128$的时候,一下子压缩率很高。但是很奇怪的是当$K=64$的时候比$K=128$的时候还要大，这点很诧异！！<br>随着簇的个数的减少，图片的失真越来越严重,到后面$K=8$的时候几乎就是一个黑白图片了。<br>需要再认真研究下,为何压缩率的变化这么奇怪。sad。。。。。</p>
 
       
     </div>
@@ -288,7 +302,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/随笔/" rel="tag">#随笔</a>
+            <a href="/tags/Machine-Learning/" rel="tag">#Machine Learning</a>
           
         </div>
       
@@ -297,17 +311,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/13/k-means/" rel="next" title="K-means算法浅学">
-                <i class="fa fa-chevron-left"></i> K-means算法浅学
+              <a href="/2016/05/06/books/" rel="next" title="书单">
+                <i class="fa fa-chevron-left"></i> 书单
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/06/books/" rel="prev" title="书单">
-                书单 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -356,8 +366,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/11/essay0410/"
-           data-title="“暴力”" data-url="http://notdeep.github.io/2016/04/11/essay0410/">
+      <div class="ds-thread" data-thread-key="2016/05/10/K-means-example/"
+           data-title="K-means与图像压缩" data-url="http://notdeep.github.io/2016/05/10/K-means-example/">
       </div>
     
   </div>
@@ -480,7 +490,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目錄</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#K-means与图像压缩"><span class="nav-number">1.</span> <span class="nav-text">K-means与图像压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩算法设计"><span class="nav-number">1.1.</span> <span class="nav-text">压缩算法设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验效果"><span class="nav-number">1.2.</span> <span class="nav-text">实验效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Original-Image"><span class="nav-number">1.2.1.</span> <span class="nav-text">$Original$ $Image$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Compressd-Image-K-128"><span class="nav-number">1.2.2.</span> <span class="nav-text">$Compressd$ $Image$ $K = 128$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Compressd-Image-K-64"><span class="nav-number">1.2.3.</span> <span class="nav-text">$Compressd$ $Image$ $K = 64$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Compressd-Image-K-32"><span class="nav-number">1.2.4.</span> <span class="nav-text">$Compressd$ $Image$ $K = 32$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Compressd-Image-K-16"><span class="nav-number">1.2.5.</span> <span class="nav-text">$Compressd$ $Image$ $K = 16$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Compressd-Image-K-8"><span class="nav-number">1.2.6.</span> <span class="nav-text">$Compressd$ $Image$ $K = 8$</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验结论"><span class="nav-number">1.3.</span> <span class="nav-text">实验结论</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
