@@ -58,24 +58,24 @@
 
 
 <meta name="description" content="之前有对K-means聚类算法有过介绍,现补个例子。证明我学过
-算法引子不久前尝试解决过一个参数压缩的问题。">
+算法引子不久前尝试解决过一个参数压缩的问题。当时的需求是把深度学习网络中的权重参数和偏执参数进行压缩。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="K-means与图像压缩">
 <meta property="og:url" content="http://notdeep.github.io/2016/05/10/K-means-example/index.html">
 <meta property="og:site_name" content="NotDeep">
 <meta property="og:description" content="之前有对K-means聚类算法有过介绍,现补个例子。证明我学过
-算法引子不久前尝试解决过一个参数压缩的问题。">
+算法引子不久前尝试解决过一个参数压缩的问题。当时的需求是把深度学习网络中的权重参数和偏执参数进行压缩。">
 <meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water.jpg">
 <meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_128.jpg">
 <meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_64.jpg">
 <meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_32.jpg">
 <meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_16.jpg">
 <meta property="og:image" content="http://o6x8fl19z.bkt.clouddn.com/water_8.jpg">
-<meta property="og:updated_time" content="2016-05-09T18:15:20.000Z">
+<meta property="og:updated_time" content="2016-05-09T18:16:59.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="K-means与图像压缩">
 <meta name="twitter:description" content="之前有对K-means聚类算法有过介绍,现补个例子。证明我学过
-算法引子不久前尝试解决过一个参数压缩的问题。">
+算法引子不久前尝试解决过一个参数压缩的问题。当时的需求是把深度学习网络中的权重参数和偏执参数进行压缩。">
 <meta name="twitter:image" content="http://o6x8fl19z.bkt.clouddn.com/water.jpg">
 
 
@@ -269,7 +269,7 @@
 
       
         <p>之前有对K-means聚类算法有过介绍,现补个例子。证明<del>我学过</del></p>
-<h2 id="算法引子"><a href="#算法引子" class="headerlink" title="算法引子"></a>算法引子</h2><p>不久前尝试解决过一个参数压缩的问题。<br><a id="more"></a><br>当时的需求是把深度学习网络中的权重参数和偏执参数进行压缩。<br>其中一个思路就是从图像的颜色空间压缩的思路提供的，当时一共有$float$类型的参数$8000k$+,前辈之前的工作经过数值分布统计之后采用将参数放大$100000$然后直接用$int16$存储,这样就保留了小数点后$5$位的精度,使用的时候再除以$100000$还原,这样就直接将$32$位的存储类型转换为$16$位的数据类型,有损压缩率为$50$%经过测试对于模型的影响是微乎其微的,ROC曲线表现也很好。</p>
+<h2 id="算法引子"><a href="#算法引子" class="headerlink" title="算法引子"></a>算法引子</h2><p>不久前尝试解决过一个参数压缩的问题。<br>当时的需求是把深度学习网络中的权重参数和偏执参数进行压缩。<br><a id="more"></a><br>其中一个思路就是从图像的颜色空间压缩的思路提供的，当时一共有$float$类型的参数$8000k$+,前辈之前的工作经过数值分布统计之后采用将参数放大$100000$然后直接用$int16$存储,这样就保留了小数点后$5$位的精度,使用的时候再除以$100000$还原,这样就直接将$32$位的存储类型转换为$16$位的数据类型,有损压缩率为$50$%经过测试对于模型的影响是微乎其微的,ROC曲线表现也很好。</p>
 <p>我们换种思路理解这种方法,$int16$范围内一共也只有$65535$种数值,而我们用$int16$表示了$8000K$+个参数,可想而知这其中肯定有很多数值重复率很高。</p>
 <p>于是人是贪婪的,我们想进一步用更少的数值个数去表达这些所有参数。于是当时就想是否可以通过聚类的办法将参数用更少的簇来表示,使用的时候有一个索引,我们对应的去绘制出原来的参数表就行了。比如我们只有$256$个簇的话,每个位置的索引我们用一个$8bit$就可以建立索引。</p>
 <p>无奈最后实验过很多个参数这个办法都不是很好,感觉对参数本身的结构损坏很大。目测要深入了解到参数的结构,对功能相似的参数做个局部聚类可能效果会很赞。</p>
