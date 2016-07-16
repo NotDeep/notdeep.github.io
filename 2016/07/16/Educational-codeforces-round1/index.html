@@ -58,18 +58,27 @@
 
 
 <meta name="description" content="$Problem$ $A.$ $Tricky$ $Sum$题意
-对$1$~$n$求和,但是$2$的$n$次幂都变成减。">
+对$1$~$n$求和,但是$2$的$n$次幂都变成减。
+
+分析
+$n$范围有$1e9$,直接$for$肯定$GG$,直接等差数列求和为$sum$,然后剔除掉$2$的$n$次幂,$sum$到答案每一个$2$的$n$次幂都要被剔除两倍才对。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Educational Codeforces round 1">
 <meta property="og:url" content="http://notdeep.github.io/2016/07/16/Educational-codeforces-round1/index.html">
 <meta property="og:site_name" content="NotDeep">
 <meta property="og:description" content="$Problem$ $A.$ $Tricky$ $Sum$题意
-对$1$~$n$求和,但是$2$的$n$次幂都变成减。">
-<meta property="og:updated_time" content="2016-07-16T14:00:20.000Z">
+对$1$~$n$求和,但是$2$的$n$次幂都变成减。
+
+分析
+$n$范围有$1e9$,直接$for$肯定$GG$,直接等差数列求和为$sum$,然后剔除掉$2$的$n$次幂,$sum$到答案每一个$2$的$n$次幂都要被剔除两倍才对。">
+<meta property="og:updated_time" content="2016-07-16T14:03:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Educational Codeforces round 1">
 <meta name="twitter:description" content="$Problem$ $A.$ $Tricky$ $Sum$题意
-对$1$~$n$求和,但是$2$的$n$次幂都变成减。">
+对$1$~$n$求和,但是$2$的$n$次幂都变成减。
+
+分析
+$n$范围有$1e9$,直接$for$肯定$GG$,直接等差数列求和为$sum$,然后剔除掉$2$的$n$次幂,$sum$到答案每一个$2$的$n$次幂都要被剔除两倍才对。">
 
 
 
@@ -264,10 +273,10 @@
         <h2 id="Problem-A-Tricky-Sum"><a href="#Problem-A-Tricky-Sum" class="headerlink" title="$Problem$ $A.$ $Tricky$ $Sum$"></a>$Problem$ $A.$ $Tricky$ $Sum$</h2><h3 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h3><blockquote>
 <p>对$1$~$n$求和,但是$2$的$n$次幂都变成减。</p>
 </blockquote>
-<a id="more"></a>
 <h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><blockquote>
 <p>$n$范围有$1e9$,直接$for$肯定$GG$,直接等差数列求和为$sum$,然后剔除掉$2$的$n$次幂,$sum$到答案每一个$2$的$n$次幂都要被剔除两倍才对。</p>
 </blockquote>
+<a id="more"></a>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> n,tmp = <span class="number">1</span>,ans = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">        ans = n * (n + <span class="number">1</span>) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span>(tmp &lt;= n)&#123;</span><br><span class="line">            ans -= tmp * <span class="number">2</span>;</span><br><span class="line">            tmp *= <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="Problem-B-Queries-on-a-String"><a href="#Problem-B-Queries-on-a-String" class="headerlink" title="$Problem$ $B.$ $Queries$ $on$ $a$ $String$"></a>$Problem$ $B.$ $Queries$ $on$ $a$ $String$</h2><h3 id="题意-1"><a href="#题意-1" class="headerlink" title="题意"></a>题意</h3><blockquote>
 <p>给一个字符串,然后给出若干个$l_i,r_i,k_i$表示把串的$l_i$到$r_i$这个子串循环右移$k_i$次,问最后串变成什么样</p>
